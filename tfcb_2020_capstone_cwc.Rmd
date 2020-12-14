@@ -16,8 +16,9 @@ library(tidyverse)
 ```
 Determining the number of patients within the whole dataset that are/are not diagnosed with glaucoma
 ```{r}
-whole_data <- read.csv("doi_10.5061_dryad.q6ft5__v1/dataset/ds_whole.csv")
-whole_data
+train_data <- read.csv("dataset/ds_train.csv")
+test_data <- read.csv("dataset/ds_test.csv")
+
 ```
 
 
