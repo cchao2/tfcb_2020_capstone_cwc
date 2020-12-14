@@ -1,0 +1,23 @@
+---
+  title: "tfcb_2020_Capstone_CWC"
+author: "Cara Chao"
+date: "12/14/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(tidyverse)
+```
+Determining the number of patients within the whole dataset that are/are not diagnosed with glaucoma
+```{r}
+whole_data <- read.csv("doi_10.5061_dryad.q6ft5__v1/dataset/ds_whole.csv")
+whole_data
+```
+
+
