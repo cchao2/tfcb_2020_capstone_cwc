@@ -22,3 +22,26 @@ test_data <- read.csv("dataset/ds_test.csv")
 ```
 
 
+```{r}
+library(scales)
+
+train_data%>%
+  select(RNFL4.mean, glaucoma) %>%
+  ggplot(aes(x=glaucoma, y=RNFL4.mean)) +
+  geom_point()
+```
+
+```{r}
+avg_data <- train_data %>% 
+  summarize(mean_cornea = mean(cornea_thickness), std_cornea = sd(cornea_thickness)) %>%
+  print()
+```
+
+
+```{r}
+train_data%>%
+  select(cornea_thickness, glaucoma) %>%
+  ggplot(aes(x=glaucoma, y=cornea_thickness)) +
+  geom_count() 
+```
+
