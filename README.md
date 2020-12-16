@@ -1,4 +1,4 @@
-About the data:
+# About the data:
 
 This capstone project uses the dataset from the Glaucoma diagnosis dataset. The questions that this project aims to adress are:
 
@@ -6,7 +6,7 @@ This capstone project uses the dataset from the Glaucoma diagnosis dataset. The 
 2. How does the training dataset compare to the test dataset in terms of diagnosis of glaucoma after training?
 3. How well does cornea thickness in this dataset suggest glaucoma diagnoses?
 
-Measured Variables:
+## Measured Variables:
 
 1. Glaucoma: 0 or 1 as not diagnosed or diagnosed with Glaucoma, respectively.
 2. Age: age of patients sampled
@@ -22,7 +22,8 @@ the borderline is when the p value is between 1%-3%. GHT can help identify early
 In this dataset the investigators state that the PSD, GHT, occular pressure, and age have high values whereas MD and RNFL4.mean have low avlues 
 Cornea thickness in the healthy control group is slightly higher than the glaucoma group.
 
-Motivations and assumptions:
+## Motivations and assumptions:
+
 The original manuscript did not provide sufficient information, at least for one who is not familiar with the diagnosis behind glaucoma, to understand what they did with the RNFL4.mean variable measured.
 I also could not deduce what the mean deviation (MD) was used for or how it was determined in the first place.  
 Since I am not familiar with the diagnosis process behind glaucoma, I did read some papers about these variables measured in this dataset. More specifically, I became interested in looking at the intraocular pressure (ocular pressure)
@@ -31,6 +32,12 @@ I was also interested in looking further at whether cornea thickness in pateints
 To examine these questions, I assumed that within the glaucoma columns in the datasets given: 1 = glaucoma and 0 = no glaucoma (control). I also assumed that subjects who were diagnosed with glaucoma in the testing data were diagnosed via the model and were blinded from the researchers;
 that way I could compare between the training and testing results. 
 
-Citations:
+## Files:
+
+The repository includes this README.md file, a jupiter notebook, and an R markdown file.
+The jupiter notebook contains PCA analysis of the dataset, addressing the first question.
+The R markdown file answers the second and third questions. 
+
+## Citations:
 
 Kim, Seongjae; Cho, Kyung Jin; Oh, Sejong (2018), Data from: Development of machine learning models for diagnosis of glaucoma, Dryad, Dataset, https://doi.org/10.5061/dryad.q6ft5
