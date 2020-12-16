@@ -10,7 +10,7 @@ About the data:
 Here we are using the same glaucoma dataset as used in the jupiter notebook, except this loos at the training and testing dataset rather than the whole. In here, we are interested in addressing these two question:
 
 1. How does the training dataset compare to the test dataset in terms of diagnosis of glaucoma after training?
-2. How well does cornea thickness in this dataset suggest glaucoma diagnoses?
+2. Does cornea thickness vary between those with and without glaucoma?
 
 The first question addresses how well the training set trained the model by comparing the percentage of diagnosed patients with glaucoma between the training dataset and the test dataset. The second question further looks at whether cornea thickness is different between patients with and without glaucoma, and determining whether there is a difference in any trends before and after training the model. 
 
@@ -49,10 +49,9 @@ df_train%>%
   ggplot(aes(x=glaucoma, y=cornea_thickness)) +
   geom_count() 
 ```
-
+Determining the mean cornea thickness in patients from the training dataset as well as the standard deviation. 
 
 ```{r}
-## determining the mean cornea thickness in patients from the training dataset as well as the standard deviation.
 avg_data <- df_test %>% 
   summarize(mean_cornea = mean(cornea_thickness), std_cornea = sd(cornea_thickness)) %>%
   print()
@@ -65,3 +64,4 @@ df_test%>%
   ggplot(aes(x=glaucoma, y=cornea_thickness)) +
   geom_count() 
 ```
+To address question 2, does cornea thickness differ between normal subjects and those with diagnosed glaucoma, we generated two figures counting overlapping points to see if the distribution of cornea thickness in the training and testing datasets. We also determined the mean cornea thickness and standard deviations from the two data to see how the data varied in no-glaucoma and glaucoma groups. 

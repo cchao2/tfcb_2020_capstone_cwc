@@ -31,3 +31,6 @@ I was also interested in looking further at whether cornea thickness in pateints
 To examine these questions, I assumed that within the glaucoma columns in the datasets given: 1 = glaucoma and 0 = no glaucoma (control). I also assumed that subjects who were diagnosed with glaucoma in the testing data were diagnosed via the model and were blinded from the researchers;
 that way I could compare between the training and testing results. 
 
+Citations:
+
+Kim, Seongjae; Cho, Kyung Jin; Oh, Sejong (2018), Data from: Development of machine learning models for diagnosis of glaucoma, Dryad, Dataset, https://doi.org/10.5061/dryad.q6ft5
