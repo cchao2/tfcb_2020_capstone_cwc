@@ -5,6 +5,17 @@ date: "12/14/2020"
 output: html_document
 ---
 
+About the data:
+
+Here we are using the same glaucoma dataset as used in the jupiter notebook, except this loos at the training and testing dataset rather than the whole. In here, we are interested in addressing these two question:
+
+1. How does the training dataset compare to the test dataset in terms of diagnosis of glaucoma after training?
+2. How well does cornea thickness in this dataset suggest glaucoma diagnoses?
+
+The first question addresses how well the training set trained the model by comparing the percentage of diagnosed patients with glaucoma between the training dataset and the test dataset. The second question further looks at whether cornea thickness is different between patients with and without glaucoma, and determining whether there is a difference in any trends before and after training the model. 
+
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -16,32 +27,41 @@ library(tidyverse)
 ```
 Determining the number of patients within the whole dataset that are/are not diagnosed with glaucoma
 ```{r}
-train_data <- read.csv("dataset/ds_train.csv")
-test_data <- read.csv("dataset/ds_test.csv")
+# assigning datasets to variable names for the training and testing datasets.
+df_train <- read.csv("dataset/ds_train.csv")
+df_test <- read.csv("dataset/ds_test.csv")
 
 ```
 
+This determines the mean cornea thickness in patients from the training dataset as well as the standard deviation.
 
 ```{r}
-library(scales)
-
-train_data%>%
-  select(RNFL4.mean, glaucoma) %>%
-  ggplot(aes(x=glaucoma, y=RNFL4.mean)) +
-  geom_point()
-```
-
-```{r}
-avg_data <- train_data %>% 
+avg_data <- df_train %>% 
   summarize(mean_cornea = mean(cornea_thickness), std_cornea = sd(cornea_thickness)) %>%
   print()
 ```
 
+To determine whether or not there is a trend between glaucoma diagnoses and cornea thickness, we generated a plot counting the overlapping points of the cornea thickness between the control patients without glaucoma and those diagnosed with glaucoma. 
 
 ```{r}
-train_data%>%
+df_train%>%
   select(cornea_thickness, glaucoma) %>%
   ggplot(aes(x=glaucoma, y=cornea_thickness)) +
   geom_count() 
 ```
 
+
+```{r}
+## determining the mean cornea thickness in patients from the training dataset as well as the standard deviation.
+avg_data <- df_test %>% 
+  summarize(mean_cornea = mean(cornea_thickness), std_cornea = sd(cornea_thickness)) %>%
+  print()
+```
+Also generated another plot counting overlapping points to see the distribution of cornea thickness among the control no glaucoma group and the diagnosed glaucoma group. This was done to compare the distribution with the training set to see if anything changed after the model was trained. 
+
+```{r}
+df_test%>%
+  select(cornea_thickness, glaucoma) %>%
+  ggplot(aes(x=glaucoma, y=cornea_thickness)) +
+  geom_count() 
+```
