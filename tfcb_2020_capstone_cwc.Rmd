@@ -1,5 +1,5 @@
 ---
-  title: "tfcb_2020_Capstone_CWC"
+title: "tfcb_2020_Capstone_CWC"
 author: "Cara Chao"
 date: "12/14/2020"
 output: html_document
@@ -9,7 +9,7 @@ About the data:
 
 Here we are using the same glaucoma dataset as used in the jupiter notebook, except this loos at the training and testing dataset rather than the whole. In here, we are interested in addressing these two question:
 
-1. How does the training dataset compare to the test dataset in terms of diagnosis of glaucoma after training?
+1. What is the average age of those who have glaucoma?
 2. Does cornea thickness vary between those with and without glaucoma?
 
 The first question addresses how well the training set trained the model by comparing the percentage of diagnosed patients with glaucoma between the training dataset and the test dataset. The second question further looks at whether cornea thickness is different between patients with and without glaucoma, and determining whether there is a difference in any trends before and after training the model. 
@@ -33,6 +33,37 @@ df_test <- read.csv("dataset/ds_test.csv")
 
 ```
 
+filtering through the dataset to get only hits from subjects who are diagnosed with glaucoma.
+```{r}
+glaucoma_train <- df_train %>%
+  filter(glaucoma==1)
+glaucoma_train
+```
+```{r}
+avg_g_train <- glaucoma_train%>%
+  mutate(mean_glaucoma_train = mean(age))%>%
+print()
+
+```
+from this, we know that the mean age within the glaucoma group is 60 years old.
+
+
+filterinig through the dataset to get only hits from subjects who do not have glaucoma 
+```{r}
+no_glaucoma_train <- df_train %>%
+  filter(glaucoma==0)
+no_glaucoma_train
+```
+
+```{r}
+avg_no_train <- no_glaucoma_train%>%
+  mutate(mean_glaucoma_train = mean(age))%>%
+print()
+
+```
+The average age of the group without glaucoma is 51 years old. 
+
+
 This determines the mean cornea thickness in patients from the training dataset as well as the standard deviation.
 
 ```{r}
@@ -40,6 +71,35 @@ avg_data <- df_train %>%
   summarize(mean_cornea = mean(cornea_thickness), std_cornea = sd(cornea_thickness)) %>%
   print()
 ```
+
+```{r}
+no_glaucoma_test <- df_test %>%
+  filter(glaucoma==0)
+no_glaucoma_test
+```
+
+```{r}
+avg_no_test <- no_glaucoma_test%>%
+  mutate(mean_glaucoma_test = mean(age))%>%
+print()
+```
+the mean age for those who don't have glaucoma is 52 years old. 
+
+
+```{r}
+glaucoma_test <- df_test %>%
+  filter(glaucoma==1)
+glaucoma_test
+```
+
+```{r}
+avg_g_test <- glaucoma_test%>%
+  mutate(mean_glaucoma_test = mean(age))%>%
+print()
+
+```
+the mean age for those with glaucoma is 63 years old. 
+
 
 To determine whether or not there is a trend between glaucoma diagnoses and cornea thickness, we generated a plot counting the overlapping points of the cornea thickness between the control patients without glaucoma and those diagnosed with glaucoma. 
 
@@ -64,4 +124,4 @@ df_test%>%
   ggplot(aes(x=glaucoma, y=cornea_thickness)) +
   geom_count() 
 ```
-To address question 2, does cornea thickness differ between normal subjects and those with diagnosed glaucoma, we generated two figures counting overlapping points to see if the distribution of cornea thickness in the training and testing datasets. We also determined the mean cornea thickness and standard deviations from the two data to see how the data varied in no-glaucoma and glaucoma groups. 
+For question 1, we found that there is no large difference in age between those who have glaucoma and the control groups in both test and training datasets. To address question 2, does cornea thickness differ between normal subjects and those with diagnosed glaucoma, we generated two figures counting overlapping points to see if the distribution of cornea thickness in the training and testing datasets. We also determined the mean cornea thickness and standard deviations from the two data to see how the data varied in no-glaucoma and glaucoma groups.  
